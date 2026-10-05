@@ -1,24 +1,114 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
 <head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="style.css">
+  <meta
+
+    name="viewport"
+
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+
+  >
 
   <title>Space Mystery</title>
+
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-  <h1>🚀 Space Mystery</h1>
+  <div id="game-container">
 
-  <p>Welcome to the spaceship!</p>
+    <canvas id="gameCanvas" width="1000" height="650"></canvas>
 
-  <button>Start Game</button>
+    <div id="hud">
+
+      <div id="game-title">SPACE MYSTERY</div>
+
+      <div id="objective">Objective: Explore the ship</div>
+
+      <div id="task-counter">Tasks: 0 / 3</div>
+
+    </div>
+
+    <div id="controls">
+
+      <div id="dpad">
+
+        <button class="move-button" data-direction="up">▲</button>
+
+        <div class="middle-controls">
+
+          <button class="move-button" data-direction="left">◀</button>
+
+          <button class="move-button" data-direction="down">▼</button>
+
+          <button class="move-button" data-direction="right">▶</button>
+
+        </div>
+
+      </div>
+
+      <button id="use-button">
+
+        USE
+
+      </button>
+
+    </div>
+
+    <div id="task-modal" class="hidden">
+
+      <div id="task-panel">
+
+        <h2 id="task-title">
+
+          Ship System
+
+        </h2>
+
+        <p id="task-description">
+
+          Complete the task.
+
+        </p>
+
+        <div id="task-area"></div>
+
+        <button id="close-task">
+
+          CLOSE
+
+        </button>
+
+      </div>
+
+    </div>
+
+    <div id="victory-screen" class="hidden">
+
+      <h1>MISSION COMPLETE</h1>
+
+      <p>
+
+        All ship systems restored.
+
+      </p>
+
+      <button id="restart-button">
+
+        PLAY AGAIN
+
+      </button>
+
+    </div>
+
+  </div>
 
   <script src="game.js"></script>
 
