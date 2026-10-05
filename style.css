@@ -1,33 +1,421 @@
+* {
+
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+html,
+
 body {
 
   margin: 0;
 
-  background: #111827;
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #050914;
 
   color: white;
 
   font-family: Arial, sans-serif;
 
-  text-align: center;
-
-}
-
-h1 {
-
-  margin-top: 40px;
+  touch-action: none;
 
 }
 
 button {
 
-  padding: 15px 25px;
+  font-family: inherit;
 
-  font-size: 18px;
-
-  border-radius: 10px;
+  color: white;
 
   border: none;
 
   cursor: pointer;
+
+}
+
+.hidden {
+
+  display: none !important;
+
+}
+
+/* START SCREEN */
+
+#start-screen {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  background:
+
+    radial-gradient(circle at 20% 30%, #1c3157 0, transparent 25%),
+
+    radial-gradient(circle at 80% 70%, #162b4b 0, transparent 25%),
+
+    #050914;
+
+}
+
+#start-screen h1 {
+
+  margin: 0 0 10px;
+
+  font-size: clamp(36px, 7vw, 72px);
+
+  letter-spacing: 4px;
+
+}
+
+#start-screen p {
+
+  margin: 0 0 28px;
+
+  color: #9edfff;
+
+  font-size: clamp(16px, 2.5vw, 24px);
+
+}
+
+#start-button,
+
+#restart-button {
+
+  padding: 16px 32px;
+
+  border-radius: 14px;
+
+  background: #168cff;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  box-shadow: 0 0 22px rgba(22, 140, 255, 0.55);
+
+}
+
+/* GAME SCREEN */
+
+#game-screen {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: #030711;
+
+}
+
+#game-canvas {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+}
+
+/* HUD */
+
+#hud {
+
+  position: absolute;
+
+  top: 12px;
+
+  left: 12px;
+
+  right: 12px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  pointer-events: none;
+
+}
+
+#hud > * {
+
+  background: rgba(4, 12, 25, 0.78);
+
+  border: 2px solid rgba(94, 207, 255, 0.55);
+
+  border-radius: 12px;
+
+  padding: 8px 12px;
+
+}
+
+/* TOUCH CONTROLS */
+
+#touch-controls {
+
+  position: absolute;
+
+  left: 18px;
+
+  bottom: 18px;
+
+  width: 180px;
+
+  height: 180px;
+
+}
+
+.move-button {
+
+  position: absolute;
+
+  width: 58px;
+
+  height: 58px;
+
+  border-radius: 16px;
+
+  background: rgba(34, 72, 105, 0.82);
+
+  border: 2px solid #72d5ff;
+
+  font-size: 28px;
+
+  font-weight: bold;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+}
+
+#up-button {
+
+  left: 61px;
+
+  top: 0;
+
+}
+
+#left-button {
+
+  left: 0;
+
+  top: 61px;
+
+}
+
+#right-button {
+
+  right: 0;
+
+  top: 61px;
+
+}
+
+#down-button {
+
+  left: 61px;
+
+  bottom: 0;
+
+}
+
+.move-button:active {
+
+  background: #168cff;
+
+  transform: scale(0.94);
+
+}
+
+/* ACTION BUTTON */
+
+#action-button {
+
+  position: absolute;
+
+  right: 25px;
+
+  bottom: 35px;
+
+  width: 105px;
+
+  height: 105px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 151, 32, 0.9);
+
+  border: 4px solid #ffd28a;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  box-shadow: 0 0 20px rgba(255, 151, 32, 0.45);
+
+}
+
+/* TASK WINDOW */
+
+#task-window {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: min(500px, 80vw);
+
+  padding: 25px;
+
+  border-radius: 18px;
+
+  background: #101d2d;
+
+  border: 3px solid #66d8ff;
+
+  text-align: center;
+
+  box-shadow: 0 0 35px rgba(70, 205, 255, 0.35);
+
+}
+
+#close-task {
+
+  margin-top: 15px;
+
+  padding: 12px 24px;
+
+  border-radius: 10px;
+
+  background: #168cff;
+
+  font-weight: bold;
+
+}
+
+/* VICTORY SCREEN */
+
+#victory-screen {
+
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  background: rgba(3, 8, 18, 0.96);
+
+}
+
+#victory-screen h1 {
+
+  font-size: clamp(34px, 6vw, 68px);
+
+  margin-bottom: 10px;
+
+  color: #7dffb2;
+
+}
+
+/* IPAD LANDSCAPE */
+
+@media (orientation: landscape) and (max-height: 600px) {
+
+  #touch-controls {
+
+    width: 150px;
+
+    height: 150px;
+
+    left: 14px;
+
+    bottom: 12px;
+
+  }
+
+  .move-button {
+
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 23px;
+
+  }
+
+  #up-button {
+
+    left: 51px;
+
+  }
+
+  #left-button {
+
+    top: 51px;
+
+  }
+
+  #right-button {
+
+    top: 51px;
+
+  }
+
+  #down-button {
+
+    left: 51px;
+
+  }
+
+  #action-button {
+
+    width: 88px;
+
+    height: 88px;
+
+    right: 18px;
+
+    bottom: 20px;
+
+  }
 
 }
